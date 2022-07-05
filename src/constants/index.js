@@ -1,5 +1,5 @@
 const FILTERS = {
-    PRICE_RANGE: 'price_range',
+    PRICE_RANGE: 'price',
     COLOR: 'color',
     GENDER: 'gender',
     TYPE: 'type'
@@ -78,4 +78,4 @@ const FILTER_OPTIONS = {
     },
 }
 
-export { FILTER_OPTIONS, FILTERS };
+export { FILTER_OPTIONS, FILTERS, FILTER_TYPES };

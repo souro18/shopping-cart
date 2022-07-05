@@ -17,6 +17,9 @@ const Products = ({ products, addToCart, cart, removeItem }) => {
                 selectedQuantity={cart.items[product.id]?.selectedQuantity}/>
             })
         }
+        {
+            products.length === 0 ? <p>No items found</p> : null
+        }
         </div>
     </div>
 };

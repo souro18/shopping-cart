@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import ItemChanger from "./ItemChanger";
 
 const Cart = ({ cart, addToCart, removeItem }) => {
@@ -28,6 +29,10 @@ const Cart = ({ cart, addToCart, removeItem }) => {
                 </div>
                 </div>
         })}
+        {Object.values(cart.items).length === 0 ? <div> No items in cart. Click
+            <Link to="/"> here</Link> to add
+            </div>
+            : null}
         </div>
     </div>
 }

@@ -1,4 +1,4 @@
-import { FILTERS, FILTER_OPTIONS } from "../constants";
+import { FILTERS, FILTER_OPTIONS, FILTER_TYPES } from "../constants";
 
 const formatFilterOptions = (items) => {
     return items.map(item => {
@@ -45,7 +45,19 @@ const getFilteredProducts = (products, filters) => {
     return products.filter(product => {
         let isItemSelected = true;
         filterTypes.forEach(option => {
-            if(filters[option].selectedFilters.length > 0 && !filters[option].selectedFilters.includes(product[option])) {
+            if(filters[option].filterType === FILTER_TYPES.RANGE) {
+                let min = Infinity;
+                let max = -Infinity;
+                filters[option].selectedFilters.forEach(selectedOption => {
+                   const range = filters[option].filterOptions.find(option => option.displayName === selectedOption).value;
+                   min = Math.min(min, range.min);
+                   max = Math.max(max, range.max)
+                })
+                if(product.price < min || product.price > max) {
+                    isItemSelected = false;
+                }
+            }
+            else if(filters[option].selectedFilters.length > 0 && !filters[option].selectedFilters.includes(product[option])) {
                 isItemSelected = false;
             }
         })

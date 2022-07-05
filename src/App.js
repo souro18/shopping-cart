@@ -61,3 +61,6 @@ function App() {
 }
 
 export default App;
+
+// responsive filter
+// add text filter
