@@ -5,12 +5,63 @@
 .app-container {
   max-width: 1020px;
   margin: auto;
+  margin-top: 80px;
+}
+
+.white {
+  color: white;
+}
+
+.grey {
+  color: grey;
+}
+
+.inactive {
+  opacity: 0.5;
+}
+
+.header-container {
+  color: white;
+  background-color: crimson;
+  padding: 16px 0px;
+  position: fixed;
+  top: 0px;
+  right: 0px;
+  left: 0px;
+  display: flex;
+  width: 100%;
 }
 
 .header {
-  color: white;
-  background-color: crimson;
-  padding: 16px 60px;
+  justify-content: space-between;
+  padding: 0px 60px;
+}
+
+.icon {
+  position: relative;
+}
+
+.item-count {
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  color: crimson;
+  background-color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.item-counter {
+  min-width: 60px;
+  margin: 0px 10px;
+  display: flex;
+  justify-content: center;
+  border: 0.5px solid grey;
+  border-radius: 5px;
 }
 
 .d-flex {
@@ -37,6 +88,10 @@
   flex: 3;
 }
 
+.align-center {
+  align-items: center;
+}
+
 .mt-20 {
   margin-top: 20px;
 }
@@ -45,8 +100,20 @@
   padding: 0px 20px;
 }
 
+.pa-16 {
+  padding: 16px;
+}
+
 .pb-28 {
   padding-bottom: 28px;
+}
+
+.mb-10 {
+  margin-bottom: 10px;
+}
+
+.mb-5 {
+  margin-bottom: 5px;
 }
 
 .box-shadow {
@@ -66,15 +133,24 @@ box-shadow: -2px 2px 24px 1px rgba(186,194,194,1);
   flex-basis: 170px;
   margin: 0px 8px 20px 8px;
   padding: 20px 16px;
-  flex-grow: 1;
   align-self: stretch;
   border-radius: 5px;
+  max-width: 170px;
 }
 
 .img-container {
   max-width: 100%;
   flex-grow: 1;
+  min-width: 160px;
+  min-height: 160px;
+}
 
+.cursor, .btn, input, label {
+  cursor: pointer;
+}
+
+.filter {
+  margin-top: 70px;
 }
 
 .btn {
@@ -86,3 +162,22 @@ box-shadow: -2px 2px 24px 1px rgba(186,194,194,1);
   margin-top: 16px;
 }
 
+.cart-container {
+  justify-content: center;
+  display: flex;
+  min-height: 100vh;
+}
+
+.cart {
+  max-width: 600px;
+  margin: auto;
+  margin-top: 70px;
+}
+
+.cart-item {
+  border-bottom: 1px solid gainsboro;
+}
+
+.cart-img {
+  width: 70px;
+}

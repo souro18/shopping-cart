@@ -1,16 +1,22 @@
 import React from 'react';
+import ItemChanger from './ItemChanger';
 
 const Product = (props) => {
-    const { item, addToCart, isSelected, selectedQuantity } = props;
-    console.log(isSelected, item)
+    const { item, addToCart, isSelected, selectedQuantity, removeItem } = props;
     return <div className="product box-shadow d-flex flex-col-wrapper">
         <img src={item.imageURL} className="img-container" alt={item.name}/>
-        <p>{item.name}</p>
+        <h4>{item.name}</h4>
         <span>Rs. {item.price}</span>
         {
-            isSelected ? <span>{selectedQuantity}</span> : null
+            isSelected ? <ItemChanger
+            selectedQuantity={selectedQuantity}
+            minItemCount={0}
+            maxItemCount={item.quantity}
+            onAdd={() => addToCart(item)}
+            onRemove={() => removeItem(item.id)}
+            /> : <button className="btn" onClick={() => addToCart(item)}>Add to Cart</button>
         }
-        <button className="btn" onClick={() => addToCart(item)}>Add to Cart</button>
+        
     </div>
 }
 

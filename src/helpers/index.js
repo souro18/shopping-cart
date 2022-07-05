@@ -28,4 +28,28 @@ const itemPresentInCart = (items, itemId) => {
     return Object.keys(items).includes(itemId.toString())
 }
 
-export { getFilterOptions, itemPresentInCart };
+const getUpdatedFilter = (filters, filterType, filterKey ) => {
+    const newFilters = { ...filters};
+        const filterValue = newFilters[filterType].filterOptions.find(option => option.key === filterKey).displayName;
+        const index = newFilters[filterType].selectedFilters.findIndex(option => option === filterValue)
+        if(index >= 0) {
+            newFilters[filterType].selectedFilters.splice(index, 1)
+        } else {
+            newFilters[filterType].selectedFilters.push(filterValue);
+        }
+        return newFilters;
+}
+
+const getFilteredProducts = (products, filters) => {
+    const filterTypes = Object.keys(filters);
+    return products.filter(product => {
+        let isItemSelected = true;
+        filterTypes.forEach(option => {
+            if(filters[option].selectedFilters.length > 0 && !filters[option].selectedFilters.includes(product[option])) {
+                isItemSelected = false;
+            }
+        })
+        return isItemSelected;
+    })
+}
+export { getFilterOptions, itemPresentInCart, getUpdatedFilter, getFilteredProducts };

@@ -1,8 +1,35 @@
 import React from "react";
+import ItemChanger from "./ItemChanger";
 
-const Cart = (props) => {
-    console.log(props)
-    return <div>cart</div>
+const Cart = ({ cart, addToCart, removeItem }) => {
+    return <div className="app-container">
+        <div className="box-shadow d-flex flex-col-wrapper cart flex-one">
+        {Object.values(cart.items).map(item => {
+            return <div key={item.id} className="pa-16 d-flex flex-row-wrapper align-center cart-item">
+                <img src={item.imageURL} className="cart-img"/>
+                <div className="flex-one px-20">
+                    <div className="d-flex flex-row-wrapper">
+                        <h4>{item.name}</h4>
+                        <span className="material-icons md-10 grey"
+         onClick={() => removeItem(item.id, true)}>delete</span>
+                    </div>
+                    <div>
+                        <ItemChanger
+                            minItemCount={0}
+                            maxItemCount={item.quantity}
+                            selectedQuantity={item.selectedQuantity}
+                            onAdd={() => addToCart(item)}
+                            onRemove={() => removeItem(item.id)}
+                        />
+                    </div>
+                </div>
+                <div>
+                   <h4>{item.selectedQuantity * item.price }</h4>
+                </div>
+                </div>
+        })}
+        </div>
+    </div>
 }
 
 export default Cart;

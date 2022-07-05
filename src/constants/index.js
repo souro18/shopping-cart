@@ -22,13 +22,15 @@ const FILTER_OPTIONS = {
         selectorType: FILTER_TYPES.CHECKBOX,
         filterType: FILTER_TYPES.CHECKBOX,
         displayName: 'Colour',
-        filterOptions: []
+        filterOptions: [],
+        selectedFilters: []
     },
     [FILTERS.GENDER]: {
         key: FILTERS.GENDER,
         selectorType: FILTER_TYPES.CHECKBOX,
         filterType: FILTER_TYPES.CHECKBOX,
         displayName: 'Gender',
+        selectedFilters: [],
         filterOptions: [{
             key: GENDER.MEN,
             displayName: GENDER.MEN
@@ -42,13 +44,15 @@ const FILTER_OPTIONS = {
         selectorType: FILTER_TYPES.CHECKBOX,
         filterType: FILTER_TYPES.CHECKBOX,
         displayName: 'Type',
-        filterOptions: []
+        filterOptions: [],
+        selectedFilters: []
     },
     [FILTERS.PRICE_RANGE]: {
         key: FILTERS.PRICE_RANGE,
         selectorType: FILTER_TYPES.CHECKBOX,
         filterType: FILTER_TYPES.RANGE,
         displayName: 'Gender',
+        selectedFilters: [],
         filterOptions: [{
             key: 'range1',
             displayName: 'Below 250',
@@ -74,4 +78,4 @@ const FILTER_OPTIONS = {
     },
 }
 
-export { FILTER_OPTIONS, FILTERS};
+export { FILTER_OPTIONS, FILTERS };
