@@ -42,8 +42,6 @@ const Cart = ({ cart, addToCart, removeItem }) => {
         </div>
         </div>
 
-        
-        {/* </div> */}
     </div>
 }
 

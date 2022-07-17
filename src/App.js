@@ -21,6 +21,8 @@ function App() {
       presentCart.summary.totalItems += 1;
       presentCart.summary.totalPrice += item.price;
       setCart(presentCart);
+    } else {
+      alert(`max ${item.quantity} items can be added`);
     }
     
   }, [cart]);
@@ -63,8 +65,3 @@ function App() {
 }
 
 export default App;
-
-// responsive filter
-//Display the total amount in the shopping cart.
-//  If the customer tries to order more than the available quantity, an error message should appear. 
-// add text filter
