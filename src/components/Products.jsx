@@ -1,10 +1,12 @@
 import React from 'react';
-import { itemPresentInCart } from '../helpers';
+import { debounce, itemPresentInCart } from '../helpers';
 import Product from './Product';
 
-const Products = ({ products, addToCart, cart, removeItem }) => {
+const Products = ({ products, addToCart, cart, removeItem, onSearchText }) => {
+    const debouncedOnSearch = debounce(onSearchText, 400);
     return <div className="d-flex flex-three px-20 flex-col-wrapper">
         <h3>Products</h3>
+        <input placeholder="search" className="search-box" onChange={(e) =>debouncedOnSearch(e.target.value)} />
         <div className="flex-row-wrapper d-flex product-container">
         {
             products.map(product => {

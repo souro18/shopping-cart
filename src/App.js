@@ -7,11 +7,11 @@ import Header from './components/Header';
 import { itemPresentInCart } from './helpers';
 function App() {
   const [ cart, setCart] = useState({ items: {}, summary: { totalPrice: 0, totalItems: 0}});
+  const [showMobileFilter, setShowMobileFilter] =useState(false);
 
   const addToCart = useCallback((item) => {
     if((item.selectedQuantity || 0) < item.quantity) {
       const presentCart = { ...cart };
-      console.log(item);
       if(itemPresentInCart(presentCart.items, item.id)) {
         presentCart.items[item.id].selectedQuantity += 1;
       } else {
@@ -48,12 +48,14 @@ function App() {
     
   }, [cart]);
 
-  console.log(cart);
+  const onMenu = useCallback(() => {
+    setShowMobileFilter(!showMobileFilter);
+  }, [showMobileFilter]);
   return (
     <div>
-      <Header cart={cart}/>
+      <Header cart={cart} onMenu={onMenu}/>
       <Routes>
-        <Route path="/" element={<Dashboard addToCart={addToCart} removeItem={removeItem} cart={cart}/>}/>
+        <Route path="/" element={<Dashboard addToCart={addToCart} removeItem={removeItem} cart={cart} showMobileFilter={showMobileFilter}/>}/>
         <Route path="/cart" element={<Cart cart={cart} addToCart={addToCart} removeItem={removeItem}/>}/>
       </Routes>
     </div>
@@ -63,4 +65,6 @@ function App() {
 export default App;
 
 // responsive filter
+//Display the total amount in the shopping cart.
+//  If the customer tries to order more than the available quantity, an error message should appear. 
 // add text filter

@@ -1,10 +1,8 @@
 import React from 'react';
-import { FILTERS } from '../constants';
 
 const Filter = ({ filters, onFilterClick}) => {
     
-    return <div className="d-flex flex-col-wrapper flex-one" >
-        <div className="box-shadow">
+    return <div>
         {
             Object.keys(filters).map(filterType => {
                 return <div className="pa-16">
@@ -21,7 +19,6 @@ const Filter = ({ filters, onFilterClick}) => {
             })
         }
         </div>
-    </div>
 };
 
 export default Filter;

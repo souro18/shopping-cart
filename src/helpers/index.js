@@ -1,4 +1,4 @@
-import { FILTERS, FILTER_OPTIONS, FILTER_TYPES } from "../constants";
+import { FILTERS, FILTER_OPTIONS } from "../constants";
 
 const formatFilterOptions = (items) => {
     return items.map(item => {
@@ -42,17 +42,17 @@ const getUpdatedFilter = (filters, filterType, filterKey ) => {
 
 const getFilteredProducts = (products, filters) => {
     const filterTypes = Object.keys(filters);
+    let min = Infinity;
+    let max = -Infinity;
+    filters[FILTERS.PRICE_RANGE]?.selectedFilters.forEach(selectedOption => {
+        const range = filters[FILTERS.PRICE_RANGE].filterOptions.find(option => option.displayName === selectedOption).value;
+        min = Math.min(min, range.min);
+        max = Math.max(max, range.max)
+    })
     return products.filter(product => {
         let isItemSelected = true;
         filterTypes.forEach(option => {
-            if(filters[option].filterType === FILTER_TYPES.RANGE) {
-                let min = Infinity;
-                let max = -Infinity;
-                filters[option].selectedFilters.forEach(selectedOption => {
-                   const range = filters[option].filterOptions.find(option => option.displayName === selectedOption).value;
-                   min = Math.min(min, range.min);
-                   max = Math.max(max, range.max)
-                })
+            if(option ===FILTERS.PRICE_RANGE && filters[option].selectedFilters.length > 0) {
                 if(product.price < min || product.price > max) {
                     isItemSelected = false;
                 }
@@ -64,4 +64,26 @@ const getFilteredProducts = (products, filters) => {
         return isItemSelected;
     })
 }
-export { getFilterOptions, itemPresentInCart, getUpdatedFilter, getFilteredProducts };
+
+const getTextFilteredProducts = (products, searchText) => {
+    const words = searchText.trim().toLowerCase().split(' ');
+    return products.filter((product) => {
+        if(!product.targetText) {
+            product.targetText = `${product.name} ${product.type} ${product.color}`.toLowerCase();
+        }
+        return words.every(word => product.targetText.indexOf(word) > -1);
+    })
+}
+
+const debounce = (func, interval) => {
+    let timer = null;
+    return function(arg) {
+        clearTimeout(timer);
+        timer = setTimeout(() => {
+            func(arg);
+        }, interval);
+    }
+}
+
+export { getFilterOptions, itemPresentInCart, getUpdatedFilter, getFilteredProducts, getTextFilteredProducts,
+    debounce };

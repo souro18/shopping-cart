@@ -33,7 +33,17 @@ const Cart = ({ cart, addToCart, removeItem }) => {
             <Link to="/"> here</Link> to add
             </div>
             : null}
+            <div className="d-flex flex-row-wrapper cart-summary">
+            <div className="flex-one d-flex">
+                <p className="mr-20">Total:</p>
+                <p><strong>Rs. {cart.summary.totalPrice}</strong></p>
+            </div>
+            <button className="btn">Proceed</button>
         </div>
+        </div>
+
+        
+        {/* </div> */}
     </div>
 }
 
